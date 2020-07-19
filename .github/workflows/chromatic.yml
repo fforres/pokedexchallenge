@@ -1,9 +1,7 @@
 name: Chromatic
-
 on: [pull_request]
-
 jobs:
-  chromatic:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
