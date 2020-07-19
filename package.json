@@ -24,8 +24,7 @@
     "lint": "eslint ./src/** --ext .jsx --ext .js",
     "lint:fix": "npm run lint --fix",
     "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public",
-    "chromatic": "npx chromatic --project-token=kq4syj0xiuq"
+    "build-storybook": "build-storybook -s public"
   },
   "eslintConfig": {
     "extends": "react-app"
