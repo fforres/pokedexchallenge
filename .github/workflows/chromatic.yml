@@ -47,27 +47,27 @@ jobs:
       - name: Lint
         run: yarn lint        
 
-    chromatic: 
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v2
-          with:
-            fetch-depth: 0 # Required to retrieve git history\
-        - name: Cache node_modules Folder
-          uses: actions/cache@v1
-          with:
-            path: node_modules
-            key: ${{ runner.os }}-node_modules-${{ hashFiles('**/yarn.lock') }}
-            restore-keys: |
-              ${{ runner.os }}-build-${{ env.cache-name }}-
-              ${{ runner.os }}-build-
-              ${{ runner.os }}-
+  chromatic: 
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # Required to retrieve git history\
+      - name: Cache node_modules Folder
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
 
-        - name: Install Dependencies
-          run: yarn install --frozen-lockfile
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
 
-        - name: Visual Snapshot Testing
-          uses: chromaui/action@v1
-          with:
-            token: ${{ secrets.GITHUB_TOKEN }}
-            projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+      - name: Visual Snapshot Testing
+        uses: chromaui/action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
